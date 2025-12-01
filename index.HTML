@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indenização por Vazamento de Dados - Calcule Seus Direitos</title>
+    <meta name="description" content="Consulte e simule sua indenização por vazamento de dados. Serasa, bancos, WhatsApp, Nubank, PIX, Facebook e mais.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A2463;
+            --primary-dark: #051638;
+            --accent: #FB8B24;
+            --accent-light: #FFA54F;
+            --success: #06D6A0;
+            --bg-light: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --text-dark: #1A1A1A;
+            --text-medium: #4A5568;
+            --text-light: #718096;
+            --border: #E2E8F0;
+        }
+
+        .dark {
+            --primary: #3B82F6;
+            --primary-dark: #2563EB;
+            --accent: #FB8B24;
+            --accent-light: #FFA54F;
+            --success: #10B981;
+            --bg-light: #0F172A;
+            --bg-white: #1E293B;
+            --text-dark: #F1F5F9;
+            --text-medium: #CBD5E1;
+            --text-light: #94A3B8;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background 0.3s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: "🛡️";
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-medium);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h100v100H0z" fill="none"/><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-family: 'Crimson Pro', serif;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(251, 139, 36, 0.4);
+        }
+
+        /* AdSense Placeholder */
+        .adsense-block {
+            background: var(--bg-white);
+            border: 2px dashed var(--border);
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: var(--bg-white);
+            padding: 3rem;
+            margin: 3rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .calculator-section h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-medium);
+            font-size: 1rem;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            transition: border 0.3s;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .checkbox-group {
+            margin: 1.5rem 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .checkbox-item:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .calculate-btn {
+            background: var(--primary);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .calculate-btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(251, 139, 36, 0.3);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 2rem;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 1rem 0;
+        }
+
+        .result-description {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-family: 'Crimson Pro', serif;
+        }
+
+        /* Cases Section */
+        .cases-section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .case-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+            border-left: 5px solid var(--accent);
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .case-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .case-card p {
+            color: var(--text-medium);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .case-value {
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* Affiliate Section */
+        .affiliate-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 0;
+            margin: 4rem 0;
+            border-radius: 24px;
+            color: white;
+        }
+
+        .affiliate-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .affiliate-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            font-family: 'Crimson Pro', serif;
+        }
+
+        .vpn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .vpn-card {
+            background: rgba(255,255,255,0.95);
+            color: var(--text-dark);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .vpn-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .vpn-logo {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .vpn-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .vpn-features {
+            text-align: left;
+            margin: 1.5rem 0;
+            list-style: none;
+        }
+
+        .vpn-features li {
+            padding: 0.5rem 0;
+            color: var(--text-medium);
+            font-size: 0.95rem;
+        }
+
+        .vpn-features li::before {
+            content: "✓ ";
+            color: var(--success);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .vpn-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 1rem 0;
+        }
+
+        .vpn-button {
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .vpn-button:hover {
+            background: var(--accent-light);
+            transform: scale(1.05);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 4rem 0;
+        }
+
+        .faq-item {
+            background: var(--bg-white);
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-light);
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .faq-question.active::after {
+            content: "−";
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-medium);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .calculator-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .result-value {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Indeniza Dados</div>
+                <ul class="nav-links">
+                    <li><a href="#calculadora">Calculadora</a></li>
+                    <li><a href="#casos">Casos</a></li>
+                    <li><a href="#vpn">Proteção VPN</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+                <button class="theme-toggle" onclick="toggleTheme()">🌙 Tema</button>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Seus Dados Vazaram?<br>Você Tem Direito à Indenização!</h1>
+            <p>Calcule gratuitamente o valor da sua indenização por vazamento de dados</p>
+            <a href="#calculadora" class="cta-button">Calcular Minha Indenização</a>
+        </div>
+    </section>
+
+    <!-- AdSense Block 1 -->
+    <div class="container">
+        <div class="adsense-block">
+            📢 Espaço para Google AdSense - Anúncio 728x90 ou Responsivo
+        </div>
+    </div>
+
+    <!-- Calculator Section -->
+    <section id="calculadora" class="container">
+        <div class="calculator-section">
+            <h2>⚖️ Calculadora de Indenização</h2>
+
+            <div class="form-group">
+                <label for="caseType">Tipo de Vazamento:</label>
+                <select id="caseType">
+                    <option value="">Selecione o tipo de vazamento</option>
+                    <option value="cpf">Vazamento de CPF e Dados Pessoais</option>
+                    <option value="serasa">Vazamento Serasa</option>
+                    <option value="banco">Vazamento de Dados Bancários</option>
+                    <option value="whatsapp">Vazamento WhatsApp</option>
+                    <option value="nubank">Vazamento Nubank</option>
+                    <option value="pix">Vazamento de Dados PIX</option>
+                    <option value="facebook">Vazamento Facebook/Meta</option>
+                    <option value="google">Vazamento Google</option>
+                    <option value="govbr">Vazamento Gov.br</option>
+                    <option value="trabalhista">Vazamento de Dados Trabalhistas</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="severity">Gravidade do Dano:</label>
+                <select id="severity">
+                    <option value="">Selecione a gravidade</option>
+                    <option value="low">Leve (exposição mínima)</option>
+                    <option value="medium">Moderado (exposição significativa)</option>
+                    <option value="high">Grave (fraude, prejuízo financeiro)</option>
+                    <option value="critical">Gravíssimo (múltiplos danos, exposição massiva)</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group">
+                <label style="font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem; display: block;">Consequências Sofridas:</label>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="fraud" value="5000">
+                    <label for="fraud">Fraude financeira ou tentativa</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="moral" value="3000">
+                    <label for="moral">Dano moral (constrangimento, stress)</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="credit" value="4000">
+                    <label for="credit">Negativação indevida</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="identity" value="6000">
+                    <label for="identity">Roubo de identidade</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="exposure" value="2000">
+                    <label for="exposure">Exposição pública de dados sensíveis</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="dataTypes">Quantidade de dados expostos:</label>
+                <input type="number" id="dataTypes" min="1" max="20" value="1" placeholder="Ex: 5 tipos diferentes">
+            </div>
+
+            <button class="calculate-btn" onclick="calculateIndemnity()">Calcular Indenização</button>
+
+            <div class="result-box" id="resultBox">
+                <h3>Valor Estimado da Indenização</h3>
+                <div class="result-value" id="resultValue">R$ 0,00</div>
+                <p class="result-description" id="resultDescription">Este é um valor estimado baseado em jurisprudências brasileiras.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdSense Block 2 -->
+    <div class="container">
+        <div class="adsense-block">
+            📢 Espaço para Google AdSense - Anúncio 336x280 ou Responsivo
+        </div>
+    </div>
+
+    <!-- Cases Section -->
+    <section id="casos" class="container cases-section">
+        <h2 class="section-title">📋 Principais Casos de Indenização</h2>
+
+        <div class="cases-grid">
+            <div class="case-card">
+                <div class="case-icon">📱</div>
+                <h3>Vazamento CPF</h3>
+                <p>Exposição de dados pessoais como CPF, nome completo, endereço e telefone. Protegido pela LGPD, você tem direito à indenização.</p>
+                <span class="case-value">R$ 5.000 a R$ 15.000</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">📊</div>
+                <h3>Serasa Experian</h3>
+                <p>Vazamento massivo de dados cadastrais afetando milhões de brasileiros. Casos já têm jurisprudência favorável.</p>
+                <span class="case-value">R$ 8.000 a R$ 20.000</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">🏦</div>
+                <h3>Dados Bancários</h3>
+                <p>Exposição de informações financeiras, saldos, extratos e movimentações. Risco elevado de fraude.</p>
+                <span class="case-value">R$ 10.000 a R$ 30.000</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">💬</div>
+                <h3>WhatsApp</h3>
+                <p>Vazamento de números de telefone e dados de perfil. Meta já foi condenada em diversos casos.</p>
+                <span class="case-value">R$ 5.000 a R$ 12.000</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">💳</div>
+                <h3>Nubank</h3>
+                <p>Exposição de dados de clientes do banco digital. Casos incluem vazamento de informações cadastrais e financeiras.</p>
+                <span class="case-value">R$ 8.000 a R$ 25.000</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">💰</div>
+                <h3>Chave PIX</h3>
+                <p>Vazamento de chaves PIX e dados vinculados. Alto risco de golpes e fraudes financeiras.</p>
+                <span class="case-value">R$ 7.000 a R$ 18.000</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">👥</div>
+                <h3>Facebook / Meta</h3>
+                <p>Vazamentos recorrentes de dados de usuários, incluindo informações pessoais e comportamentais.</p>
+                <span class="case-value">R$ 6.000 a R$ 15.000</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">🔍</div>
+                <h3>Google</h3>
+                <p>Exposição de dados de contas Google, incluindo emails, localizações e histórico de navegação.</p>
+                <span class="case-value">R$ 5.000 a R$ 15.000</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">🏛️</div>
+                <h3>Gov.br</h3>
+                <p>Vazamento de dados governamentais, incluindo informações do CPF, título de eleitor e outros documentos.</p>
+                <span class="case-value">R$ 10.000 a R$ 35.000</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">💼</div>
+                <h3>Dados Trabalhistas</h3>
+                <p>Exposição de informações trabalhistas como salário, CTPS, PIS/PASEP. Empregador pode ser responsabilizado.</p>
+                <span class="case-value">R$ 8.000 a R$ 22.000</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdSense Block 3 -->
+    <div class="container">
+        <div class="adsense-block">
+            📢 Espaço para Google AdSense - Anúncio 300x250 ou Responsivo
+        </div>
+    </div>
+
+    <!-- Affiliate VPN Section -->
+    <section id="vpn">
+        <div class="container">
+            <div class="affiliate-section">
+                <h2>🔒 Proteja Seus Dados com VPN Premium</h2>
+                <p class="affiliate-subtitle">Evite futuros vazamentos protegendo sua conexão e privacidade online</p>
+
+                <div class="vpn-grid">
+                    <div class="vpn-card">
+                        <div class="vpn-logo">🛡️</div>
+                        <h3>NordVPN</h3>
+                        <ul class="vpn-features">
+                            <li>Criptografia militar de 256 bits</li>
+                            <li>Sem registro de atividades</li>
+                            <li>5.500+ servidores em 60 países</li>
+                            <li>Proteção contra malware</li>
+                            <li>6 dispositivos simultâneos</li>
+                        </ul>
+                        <div class="vpn-price">R$ 14,99/mês</div>
+                        <a href="#" class="vpn-button" onclick="trackAffiliate('nordvpn')">Obter Desconto 68%</a>
+                    </div>
+
+                    <div class="vpn-card">
+                        <div class="vpn-logo">⚡</div>
+                        <h3>ExpressVPN</h3>
+                        <ul class="vpn-features">
+                            <li>Velocidade ultra-rápida</li>
+                            <li>3.000+ servidores seguros</li>
+                            <li>Split tunneling avançado</li>
+                            <li>Garantia 30 dias de reembolso</li>
+                            <li>5 conexões simultâneas</li>
+                        </ul>
+                        <div class="vpn-price">R$ 29,90/mês</div>
+                        <a href="#" class="vpn-button" onclick="trackAffiliate('expressvpn')">Obter 49% OFF</a>
+                    </div>
+
+                    <div class="vpn-card">
+                        <div class="vpn-logo">🔐</div>
+                        <h3>Surfshark</h3>
+                        <ul class="vpn-features">
+                            <li>Dispositivos ilimitados</li>
+                            <li>Bloqueador de anúncios integrado</li>
+                            <li>3.200+ servidores globais</li>
+                            <li>Modo camuflagem</li>
+                            <li>Melhor custo-benefício</li>
+                        </ul>
+                        <div class="vpn-price">R$ 11,99/mês</div>
+                        <a href="#" class="vpn-button" onclick="trackAffiliate('surfshark')">Obter 82% OFF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="container faq-section">
+        <h2 class="section-title">❓ Perguntas Frequentes</h2>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Como saber se meus dados vazaram?
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Você pode verificar através de sites especializados, notificações da empresa responsável pelo vazamento, ou se receber ligações/mensagens suspeitas oferecendo serviços que você não solicitou. É importante monitorar seu CPF regularmente.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Qual o prazo para entrar com ação de indenização?
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    O prazo prescricional é de 3 anos a partir do conhecimento do vazamento, conforme o Código Civil brasileiro. É importante agir rapidamente para garantir seus direitos.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Preciso de advogado para processar?
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Para causas de até 20 salários mínimos, você pode entrar no Juizado Especial sem advogado. Para valores maiores ou casos mais complexos, é recomendável contratar um advogado especializado em direito digital e LGPD.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                A LGPD garante meu direito à indenização?
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Sim! A Lei Geral de Proteção de Dados (LGPD) estabelece que empresas são responsáveis pela segurança dos dados pessoais. Em caso de vazamento, você tem direito à reparação por danos materiais e morais.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Quanto tempo demora o processo?
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    No Juizado Especial, processos costumam levar de 6 meses a 2 anos. Na Justiça Comum, pode levar mais tempo. Muitos casos são resolvidos por acordo antes da sentença final.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                Posso processar mais de uma empresa?
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    Sim! Se seus dados foram expostos em múltiplos vazamentos por diferentes empresas, você pode entrar com ações separadas contra cada uma delas. Cada caso será analisado individualmente.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdSense Block 4 -->
+    <div class="container">
+        <div class="adsense-block">
+            📢 Espaço para Google AdSense - Anúncio 970x250 ou Responsivo
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Indeniza Dados</h3>
+                    <p>Plataforma informativa sobre direitos relacionados a vazamento de dados pessoais no Brasil.</p>
+                    <p>Proteja seus dados e conheça seus direitos.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Úteis</h3>
+                    <a href="#calculadora">Calculadora</a>
+                    <a href="#casos">Casos de Indenização</a>
+                    <a href="#vpn">Proteção VPN</a>
+                    <a href="#faq">Perguntas Frequentes</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Recursos</h3>
+                    <a href="#">LGPD - Lei Geral de Proteção de Dados</a>
+                    <a href="#">ANPD - Autoridade Nacional</a>
+                    <a href="#">Código de Defesa do Consumidor</a>
+                    <a href="#">Juizados Especiais</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Avisos Legais</h3>
+                    <p>Os valores apresentados são estimativas baseadas em jurisprudências. Consulte um advogado para avaliação precisa do seu caso.</p>
+                    <p>Este site contém links de afiliados.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Indeniza Dados. Todos os direitos reservados. | Este site é apenas informativo e não substitui consulta jurídica profissional.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        // Calculator function
+        function calculateIndemnity() {
+            const caseType = document.getElementById('caseType').value;
+            const severity = document.getElementById('severity').value;
+            const dataTypes = parseInt(document.getElementById('dataTypes').value) || 1;
+
+            if (!caseType || !severity) {
+                showCustomAlert('Por favor, preencha o tipo de vazamento e a gravidade do dano.');
+                return;
+            }
+
+            // Base values by case type
+            const baseValues = {
+                'cpf': 5000,
+                'serasa': 8000,
+                'banco': 10000,
+                'whatsapp': 5000,
+                'nubank': 8000,
+                'pix': 7000,
+                'facebook': 6000,
+                'google': 5000,
+                'govbr': 10000,
+                'trabalhista': 8000
+            };
+
+            // Severity multipliers
+            const severityMultipliers = {
+                'low': 1,
+                'medium': 1.5,
+                'high': 2.5,
+                'critical': 4
+            };
+
+            let baseValue = baseValues[caseType] || 5000;
+            let multiplier = severityMultipliers[severity] || 1;
+
+            // Calculate base indemnity
+            let totalValue = baseValue * multiplier;
+
+            // Add consequences
+            const checkboxes = document.querySelectorAll('.checkbox-item input[type="checkbox"]:checked');
+            checkboxes.forEach(checkbox => {
+                totalValue += parseInt(checkbox.value);
+            });
+
+            // Add data types multiplier
+            totalValue += (dataTypes - 1) * 1000;
+
+            // Format result
+            const formattedValue = totalValue.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+
+            // Show result
+            const resultBox = document.getElementById('resultBox');
+            const resultValue = document.getElementById('resultValue');
+            const resultDescription = document.getElementById('resultDescription');
+
+            resultValue.textContent = formattedValue;
+
+            let description = 'Este é um valor estimado baseado em jurisprudências brasileiras. ';
+            if (totalValue >= 20000) {
+                description += 'Recomendamos consultar um advogado especializado para seu caso.';
+            } else {
+                description += 'Você pode entrar com ação no Juizado Especial sem necessidade de advogado.';
+            }
+            resultDescription.textContent = description;
+
+            resultBox.style.display = 'block';
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Custom alert function (since alert() is not supported)
+        function showCustomAlert(message) {
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 1000; animation: fadeIn 0.3s;';
+
+            modal.innerHTML = `
+                <div style="background: var(--bg-white); padding: 2rem; border-radius: 16px; max-width: 400px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: slideIn 0.3s;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem;">⚠️ Atenção</h3>
+                    <p style="color: var(--text-medium); margin-bottom: 1.5rem; line-height: 1.6;">${message}</p>
+                    <button onclick="this.closest('div[style*=\"position: fixed\"]').remove()" style="background: var(--accent); color: white; border: none; padding: 0.8rem 2rem; border-radius: 25px; font-weight: 700; cursor: pointer; width: 100%; font-size: 1rem;">OK</button>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Close on background click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        // FAQ toggle
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const isActive = element.classList.contains('active');
+
+            // Close all FAQs
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.classList.remove('active');
+                q.nextElementSibling.style.maxHeight = null;
+            });
+
+            // Open clicked FAQ if it wasn't active
+            if (!isActive) {
+                element.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        }
+
+        // Affiliate tracking
+        function trackAffiliate(vpnName) {
+            console.log('Affiliate click tracked:', vpnName);
+            // Here you would implement your actual affiliate tracking
+            // For example: sending event to Google Analytics, tracking pixel, etc.
+
+            showCustomAlert(`Redirecionando para a oferta exclusiva de ${vpnName}. Você receberá o melhor desconto disponível!`);
+
+            // Prevent default link behavior for demo
+            return false;
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
